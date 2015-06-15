@@ -9,10 +9,35 @@ var cursor = cursors.push(
 	}
 );
 
-$('body').mousemove(function(e) {
+$('document').mousemove(function(e) {
+
+	console.log(e)
+
 	cursor.update(
 	{
-		x: e.pageX,
-		y: e.pageY
-	})
+		x: e.pageX - $('document').offset().left,
+		y: e.pageY - $('document').offset().top
+	});
 });
+
+function paint() {
+	cursors.once('value', function(data) {
+
+		_.each(data.val(), function(c, key) {
+			var element = $(`#${key}`);
+			var placement = `<div id=${key} style="position: absolute; left: ${c.x}px; top: ${c.y}px;" >YOYO</div>`
+
+			console.log(`x position: ${c.x}, y position: ${c.y}`)
+
+			if (element.length == 0) {
+				$('body').append(placement);
+			} else {
+				element.html(placement);
+			}
+		});
+	});
+
+	setTimeout(paint, 10);
+}
+
+paint()
