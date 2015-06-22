@@ -5,6 +5,8 @@
     "bootstrap-sass-official": "~3.2.0",
     "modernizr": "~2.8.2",
     "firebase": "^2.2.7",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "mocha": "~2.2.5",
+    "chai": "~3.0.0"
   }
 }

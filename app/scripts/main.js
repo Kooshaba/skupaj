@@ -1,24 +1,27 @@
 var firebase = new Firebase("https://skupaj.firebaseio.com/");
 
-var cursors = firebase.child('cursors');
+var cursor = new Cursor();
+cursor.listener()
+cursor.updateCoordinates();
 
-var cursor = cursors.push(
-	{
-		x: 1,
-		y: 1
-	}
-);
+// var cursors = firebase.child('cursors');
+// var cursor = cursors.push(
+// 	{
+// 		x: 1,
+// 		y: 1
+// 	}
+// );
 
-$('document').mousemove(function(e) {
+// $(document).mousemove(function(e) {
 
-	console.log(e)
+// 	console.log(e)
 
-	cursor.update(
-	{
-		x: e.pageX - $('document').offset().left,
-		y: e.pageY - $('document').offset().top
-	});
-});
+// 	cursor.update(
+// 	{
+// 		x: e.pageX,
+// 		y: e.pageY
+// 	});
+// });
 
 function paint() {
 	cursors.once('value', function(data) {
@@ -40,4 +43,4 @@ function paint() {
 	setTimeout(paint, 10);
 }
 
-paint()
+// paint()

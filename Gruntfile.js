@@ -19,7 +19,8 @@ module.exports = function (grunt) {
   // Configurable paths
   var config = {
     app: 'app',
-    dist: 'dist'
+    dist: 'dist',
+    test: 'test'
   };
 
   // Define the configuration for all the tasks
@@ -96,6 +97,7 @@ module.exports = function (grunt) {
             return [
               connect.static('.tmp'),
               connect.static('test'),
+              connect.static('app'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(config.app)
             ];
@@ -126,25 +128,26 @@ module.exports = function (grunt) {
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
-      },
-      all: [
-        'Gruntfile.js',
-        '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
-      ]
-    },
+    // jshint: {
+    //   options: {
+    //     jshintrc: '.jshintrc',
+    //     reporter: require('jshint-stylish')
+    //   },
+    //   all: [
+    //     'Gruntfile.js',
+    //     '<%= config.app %>/scripts/{,*/}*.js',
+    //     '!<%= config.app %>/scripts/vendor/*',
+    //     'test/spec/{,*/}*.js'
+    //   ]
+    // },
 
     // Mocha testing framework configuration options
     mocha: {
       all: {
         options: {
           run: true,
-          urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
+          urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html'],
+          src: ['test/*.html']
         }
       }
     },
@@ -195,6 +198,11 @@ module.exports = function (grunt) {
       app: {
         ignorePath: /^\/|\.\.\//,
         src: ['<%= config.app %>/index.html'],
+        exclude: ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js']
+      },
+      test: {
+        ignorePath: /^\/|\.\.\//,
+        src: ['<%= config.test %>/index.html'],
         exclude: ['bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js']
       },
       sass: {

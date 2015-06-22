@@ -9,6 +9,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/mocha/mocha.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -83,6 +84,8 @@
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/mocha/mocha.js"></script>
+    <script src="bower_components/chai/chai.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -96,8 +99,9 @@
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
 
-        <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
+        <!-- build:js({app,.tmp}) -->
+        <script src='scripts/cursor.js'></script>
+        <script src='scripts/main.js'></script>
         <!-- endbuild -->
 </body>
 </html>
